@@ -8,7 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
-			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -17,20 +16,24 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.faces-2.2.8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Task/JsfTask/BrightmindsTask/lib/commons-lang3-3.8.1.jar"/>
-	<classpathentry kind="lib" path="C:/Task/JsfTask/BrightmindsTask/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Task/JsfTask/BrightmindsTask/lib/hsqldb-2.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/Task/JsfTask/BrightmindsTask/lib/jackcess-3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Task/JsfTask/BrightmindsTask/lib/ucanaccess-5.0.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-10.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb-2.5.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackcess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.faces-2.2.8.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-10.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ucanaccess-5.0.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
