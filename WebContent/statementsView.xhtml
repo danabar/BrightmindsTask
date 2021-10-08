@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xml:lang="en">
+<h:head>
+	<title>Statements</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+
+	<h:form>
+
+		<p:commandLink value="Logout" action="#{loginController.logout}"
+			style="float: right;"></p:commandLink>
+		<h1>Statements</h1>
+		<h:panelGroup>
+			<h:messages></h:messages>
+			<h:panelGrid id="search" columns="4"
+				rendered="#{statementsController.haveAdminPermission()}">
+				<p:outputLabel value="Account ID"></p:outputLabel>
+				<p:inputText id="search-account-id"
+					valueChangeListener="#{statementsController.initData}"
+					value="#{statementsController.accountId}">
+					<f:ajax event="click" execute="search-account-id"
+						render="amount-from amount-to date-from date-to"></f:ajax>
+				</p:inputText>
+				<p:column></p:column>
+				<p:column></p:column>
+				<p:outputLabel value="Amount From"></p:outputLabel>
+				<p:inputText id="amount-from"
+					value="#{statementsController.fromAmount}"
+					valueChangeListener="#{statementsController.initData}">
+					<f:ajax event="click" execute="amount-from"
+						render="search-account-id date-from date-to"></f:ajax>
+				</p:inputText>
+				<p:outputLabel value="Amount To"></p:outputLabel>
+				<p:inputText id="amount-to" value="#{statementsController.toAmount}"
+					valueChangeListener="#{statementsController.initData}">
+					<f:ajax event="click" execute="amount-to"
+						render="search-account-id date-from date-to"></f:ajax>
+				</p:inputText>
+				<p:outputLabel value="DateField From">
+				</p:outputLabel>
+				<p:calendar id="date-from" value="#{statementsController.fromDate}"
+					valueChangeListener="#{statementsController.initData}">
+
+					<f:ajax event="click" execute="date-from"
+						render="search-account-id amount-from amount-to"></f:ajax>
+				</p:calendar>
+				<p:outputLabel value="DateField To"></p:outputLabel>
+				<p:calendar id="date-to" value="#{statementsController.toDate}"
+					valueChangeListener="#{statementsController.initData}">
+
+					<f:ajax event="click" execute="date-to"
+						render="search-account-id amount-from amount-to"></f:ajax>
+				</p:calendar>
+				<p:commandButton id="searc-button"
+					actionListener="#{statementsController.search}" value="Search"
+					update="@form"></p:commandButton>
+			</h:panelGrid>
+			<p:dataTable value="#{statementsController.statements}" rows="10"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+				rowsPerPageTemplate="5,10,{ShowAll|'All'}" var="statement"
+				title="Statement">
+				<p:column>
+					<f:facet name="header">ID</f:facet>
+					<p:outputLabel value="#{statement.id}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Account ID</f:facet>
+					<p:outputLabel value="#{statement.account.id}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Account Number</f:facet>
+					<p:outputLabel value="#{statement.account.accountNumber}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Account Type</f:facet>
+					<p:outputLabel value="#{statement.account.accountType}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Date Field</f:facet>
+					<p:outputLabel value="#{statement.datefield}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Amount</f:facet>
+					<p:outputLabel value="#{statement.amount}"></p:outputLabel>
+				</p:column>
+
+			</p:dataTable>
+		</h:panelGroup>
+	</h:form>
+
+</h:body>
+</html>
