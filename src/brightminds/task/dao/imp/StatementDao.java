@@ -12,8 +12,8 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import brightminds.task.config.MSAccessConfig;
-import brightminds.task.constance.TablesAndColumnsNames;
+import brightminds.task.config.MsAccessDbConfig;
+import brightminds.task.constance.ColumnsNames;
 import brightminds.task.dao.Dao;
 import brightminds.task.model.Account;
 import brightminds.task.model.Statement;
@@ -50,26 +50,25 @@ public class StatementDao implements Dao<Statement> {
 					.findFirst().orElse(null);
 		}
 		if (Objects.isNull(newStatement)) {
-			Connection connection = MSAccessConfig.connection();
+			Connection connection = MsAccessDbConfig.connection();
 			String sql = SELECT_STATEMENT_QUERY + " AND Statement.id= " + id;
 
 			try (java.sql.Statement statement = connection.createStatement()) {
 				ResultSet result = statement.executeQuery(sql);
 				while (result.next()) {
-					int accountId = result.getInt(TablesAndColumnsNames.ID);
+					int accountId = result.getInt(ColumnsNames.ID);
 					String accountNumber = result
-							.getString(TablesAndColumnsNames.ACCOUNT_NUMBER);
+							.getString(ColumnsNames.ACCOUNT_NUMBER);
 					String accountType = result
-							.getString(TablesAndColumnsNames.ACCOUNT_TYPE);
+							.getString(ColumnsNames.ACCOUNT_TYPE);
 					Account newAccount = new Account(accountId, accountType,
 							accountNumber);
 					String datefeild = result
-							.getString(TablesAndColumnsNames.DATE_FIELD);
+							.getString(ColumnsNames.DATE_FIELD);
 					DateTimeFormatter formatter = DateTimeFormatter
 							.ofPattern(DATE_FORMAT);
 					LocalDate localDate = LocalDate.parse(datefeild, formatter);
-					String amount = result
-							.getString(TablesAndColumnsNames.AMOUNT);
+					String amount = result.getString(ColumnsNames.AMOUNT);
 					double amountValue = StringUtils.isNotBlank(amount)
 							? Double.parseDouble(amount)
 							: 0.0;
@@ -88,27 +87,26 @@ public class StatementDao implements Dao<Statement> {
 
 	@Override
 	public List<Statement> getAll() {
-		Connection connection = MSAccessConfig.connection();
+		Connection connection = MsAccessDbConfig.connection();
 		statements = new ArrayList<>();
 		String sql = SELECT_STATEMENT_QUERY;
 		Statement newStatement = new Statement();
 		try (java.sql.Statement statement = connection.createStatement()) {
 			ResultSet result = statement.executeQuery(sql);
 			while (result.next()) {
-				int id = result.getInt(TablesAndColumnsNames.ID);
-				int accountId = result.getInt(TablesAndColumnsNames.ID);
+				int id = result.getInt(ColumnsNames.ID);
+				int accountId = result.getInt(ColumnsNames.ID);
 				String accountNumber = result
-						.getString(TablesAndColumnsNames.ACCOUNT_NUMBER);
+						.getString(ColumnsNames.ACCOUNT_NUMBER);
 				String accountType = result
-						.getString(TablesAndColumnsNames.ACCOUNT_TYPE);
+						.getString(ColumnsNames.ACCOUNT_TYPE);
 				Account newAccount = new Account(accountId, accountType,
 						accountNumber);
-				String datefeild = result
-						.getString(TablesAndColumnsNames.DATE_FIELD);
+				String datefeild = result.getString(ColumnsNames.DATE_FIELD);
 				DateTimeFormatter formatter = DateTimeFormatter
 						.ofPattern(DATE_FORMAT);
 				LocalDate localDate = LocalDate.parse(datefeild, formatter);
-				String amount = result.getString(TablesAndColumnsNames.AMOUNT);
+				String amount = result.getString(ColumnsNames.AMOUNT);
 				double amountValue = StringUtils.isNotBlank(amount)
 						? Double.parseDouble(amount)
 						: 0.0;
@@ -193,28 +191,27 @@ public class StatementDao implements Dao<Statement> {
 	public List<Statement> getByAccountId(int accountId) {
 		Statement newStatement = null;
 		statements = new ArrayList<>();
-		Connection connection = MSAccessConfig.connection();
+		Connection connection = MsAccessDbConfig.connection();
 		String sql = SELECT_STATEMENT_QUERY + " AND Statement.account_id= "
 				+ accountId;
 
 		try (java.sql.Statement statement = connection.createStatement()) {
 			ResultSet result = statement.executeQuery(sql);
 			while (result.next()) {
-				int id = result.getInt(TablesAndColumnsNames.ID);
-				String datefeild = result
-						.getString(TablesAndColumnsNames.DATE_FIELD);
+				int id = result.getInt(ColumnsNames.ID);
+				String datefeild = result.getString(ColumnsNames.DATE_FIELD);
 				DateTimeFormatter formatter = DateTimeFormatter
 						.ofPattern(DATE_FORMAT);
 				LocalDate localDate = LocalDate.parse(datefeild, formatter);
-				String amount = result.getString(TablesAndColumnsNames.AMOUNT);
+				String amount = result.getString(ColumnsNames.AMOUNT);
 				double amountValue = StringUtils.isNotBlank(amount)
 						? Double.parseDouble(amount)
 						: 0.0;
 
 				String accountNumber = result
-						.getString(TablesAndColumnsNames.ACCOUNT_NUMBER);
+						.getString(ColumnsNames.ACCOUNT_NUMBER);
 				String accountType = result
-						.getString(TablesAndColumnsNames.ACCOUNT_TYPE);
+						.getString(ColumnsNames.ACCOUNT_TYPE);
 				Account newAccount = new Account(accountId, accountType,
 						accountNumber);
 				newStatement = new Statement(id, newAccount, localDate,

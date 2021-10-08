@@ -24,10 +24,6 @@ import org.apache.log4j.Logger;
  */
 public class AuthorizationFilter implements Filter {
 
-	public AuthorizationFilter() {
-		super();
-	}
-
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// no needed operation

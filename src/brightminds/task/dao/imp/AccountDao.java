@@ -9,8 +9,8 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
-import brightminds.task.config.MSAccessConfig;
-import brightminds.task.constance.TablesAndColumnsNames;
+import brightminds.task.config.MsAccessDbConfig;
+import brightminds.task.constance.ColumnsNames;
 import brightminds.task.dao.Dao;
 import brightminds.task.model.Account;
 
@@ -32,7 +32,7 @@ public class AccountDao implements Dao<Account> {
 					.findFirst().orElse(null);
 		}
 		if (Objects.isNull(newAccount)) {
-			Connection connection = MSAccessConfig.connection();
+			Connection connection = MsAccessDbConfig.connection();
 			String sql = "SELECT * FROM Account where id= " + id;
 
 			try (java.sql.Statement statement = connection.createStatement()) {
@@ -40,9 +40,9 @@ public class AccountDao implements Dao<Account> {
 				while (result.next()) {
 
 					String accountNumber = result
-							.getString(TablesAndColumnsNames.ACCOUNT_NUMBER);
+							.getString(ColumnsNames.ACCOUNT_NUMBER);
 					String accountType = result
-							.getString(TablesAndColumnsNames.ACCOUNT_TYPE);
+							.getString(ColumnsNames.ACCOUNT_TYPE);
 					newAccount = new Account(id, accountType, accountNumber);
 				}
 
@@ -56,16 +56,16 @@ public class AccountDao implements Dao<Account> {
 	@Override
 	public List<Account> getAll() {
 		Account newAccount;
-		Connection connection = MSAccessConfig.connection();
+		Connection connection = MsAccessDbConfig.connection();
 		String sql = "SELECT * FROM Account";
 		try (java.sql.Statement statement = connection.createStatement()) {
 			ResultSet result = statement.executeQuery(sql);
 			while (result.next()) {
-				int id = result.getInt(TablesAndColumnsNames.ID);
+				int id = result.getInt(ColumnsNames.ID);
 				String accountNumber = result
-						.getString(TablesAndColumnsNames.ACCOUNT_NUMBER);
+						.getString(ColumnsNames.ACCOUNT_NUMBER);
 				String accountType = result
-						.getString(TablesAndColumnsNames.ACCOUNT_TYPE);
+						.getString(ColumnsNames.ACCOUNT_TYPE);
 				newAccount = new Account(id, accountType, accountNumber);
 				accounts.add(newAccount);
 			}
