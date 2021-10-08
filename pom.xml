@@ -25,6 +25,9 @@
 			</plugin>
 		</plugins>
 	</build>
+	<properties>
+  <sonar.projectKey>BrightmindsTask</sonar.projectKey>
+</properties>
 
 	<dependencies>
 		<dependency>
