@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
- * this class to decied how the system will deal with session timeout
+ * this class to decide how the system will deal with session timeout
  *
  * @author Dana Barghouthi
  *

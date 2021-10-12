@@ -26,7 +26,11 @@ public class AuthorizationFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// no needed operation
+		try {
+			doFilter(null, null, null);
+		} catch (Exception e) {
+			Logger.getLogger(AuthorizationFilter.class).error(e.getMessage());
+		}
 	}
 
 	@Override

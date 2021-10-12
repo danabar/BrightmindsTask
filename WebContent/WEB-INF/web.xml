@@ -18,24 +18,20 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>  
- 
-  
   	<login-config>
 		<auth-method>FORM</auth-method>
-
 		<form-login-config>
 			<form-login-page>/login.xhtml</form-login-page>
 			<form-error-page>/login.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
-	
 	<filter>
 		<filter-name>AuthFilter</filter-name>
 		<filter-class>brightminds.task.session.filter.AuthorizationFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthFilter</filter-name>
-		<url-pattern>/login.xhtml</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
 	</filter-mapping>
 	<session-config>
 		<session-timeout>05</session-timeout>
