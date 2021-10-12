@@ -21,7 +21,7 @@
 		<h:panelGroup>
 			<h:messages></h:messages>
 			<h:panelGrid id="search" columns="4"
-				rendered="#{statementsController.haveAdminPermission}">
+				rendered="#{statementsController.haveAdminPermission()}">
 				<p:outputLabel value="Account ID"></p:outputLabel>
 				<p:inputText id="search-account-id"
 					valueChangeListener="#{statementsController.initData}"

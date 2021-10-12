@@ -18,6 +18,8 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>  
+ 
+  
   	<login-config>
 		<auth-method>FORM</auth-method>
 
@@ -26,10 +28,7 @@
 			<form-error-page>/login.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
-	<error-page>
-		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/faces/login.xhtml</location>
-	</error-page>
+	
 	<filter>
 		<filter-name>AuthFilter</filter-name>
 		<filter-class>brightminds.task.session.filter.AuthorizationFilter</filter-class>
